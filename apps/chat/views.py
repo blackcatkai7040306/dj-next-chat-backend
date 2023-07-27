@@ -25,9 +25,11 @@ class ChatViewSet(ModelViewSet):
             receiver = int(self.request.query_params.get("receiver"))
         except ValueError:
             return ParseError("Invalid query params")
-        return Chat.objects.filter(
+        chats = Chat.objects.filter(
             sender=sender, receiver=receiver
         ) | Chat.objects.filter(sender=receiver, receiver=sender)
+        chats.order_by("created_date")
+        return chats
 
     @swagger_auto_schema(
         manual_parameters=[
