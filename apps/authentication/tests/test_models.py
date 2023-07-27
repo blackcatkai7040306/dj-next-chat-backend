@@ -5,7 +5,7 @@ from authentication.models import CustomUser
 
 
 class UserTest(TestCase):
-    """Test module for Puppy model"""
+    """Test module for user model"""
 
     def setUp(self) -> None:
         self.user1 = CustomUser.objects.create_user(

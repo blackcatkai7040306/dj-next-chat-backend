@@ -4,6 +4,6 @@ from authentication.views import RegisterView
 
 
 urlpatterns = [
-    path("login/", ObtainAuthToken.as_view()),
-    path("register/", RegisterView.as_view()),
+    path("login/", ObtainAuthToken.as_view(), name="login_user"),
+    path("register/", RegisterView.as_view(), name="register_user"),
 ]
