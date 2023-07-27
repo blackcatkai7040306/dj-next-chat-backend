@@ -1,0 +1,56 @@
+<VirtualHost *:80>
+    # This is name based virtual hosting. So place an appropriate server name
+    #   here. Example: django.devsrv.local
+    ServerName  [[SERVER_NAME]]
+    ServerAdmin webmaster@localhost
+
+    # This alias makes serving static files possible.
+    #   Please note, that this is geared to our settings/common.py
+    #   In production environment, you will propably adjust this!
+    Alias /static/  /Users/pratik/Documents/freelancing/dj-react-chat/dj-react-chat-backend/run/static/
+
+    # This alias makes serving media files possible.
+    #   Please note, that this is geared to our settings/common.py
+    #   In production environment, you will propably adjust this!
+    Alias /media/  /Users/pratik/Documents/freelancing/dj-react-chat/dj-react-chat-backend/run/media/
+
+    # Insert the full path to the wsgi.py-file here
+    WSGIScriptAlias /   /Users/pratik/Documents/freelancing/dj-react-chat/dj-react-chat-backend/config/wsgi.py
+
+    # PROCESS_NAME specifies a distinct name of this process
+    #   see: https://code.google.com/p/modwsgi/wiki/ConfigurationDirectives#WSGIDaemonProcess
+    # PATH/TO/PROJECT_ROOT is the full path to your project's root directory, 
+    #   containing your project files
+    # PATH/TO/VIRTUALENV/ROOT: If you are using a virtualenv specify the full
+    #   path to its directory.
+    #   Generally you must specify the path to Python's site-packages.
+    WSGIDaemonProcess   config  python-path=/Users/pratik/Documents/freelancing/dj-react-chat/dj-react-chat-backend:/Users/pratik/Documents/freelancing/dj-react-chat/dj-react-chat-backend/../lib/python2.7/site-packages
+
+    # PROCESS_GROUP specifies a distinct name for the process group
+    #   see: https://code.google.com/p/modwsgi/wiki/ConfigurationDirectives#WSGIProcessGroup
+    WSGIProcessGroup    config
+
+    # Serving static files from this directory
+    #   Please note, that this is geared to our settings/common.py
+    #   In production environment, you will propably adjust this!
+    <Directory /Users/pratik/Documents/freelancing/dj-react-chat/dj-react-chat-backend/run/static>
+        Options -Indexes
+        Order deny,allow
+        Allow from all
+    </Directory>
+
+    # Serving media files from this directory
+    #   Please note, that this is geared to our settings/common.py
+    #   In production environment, you will propably adjust this!
+    <Directory /Users/pratik/Documents/freelancing/dj-react-chat/dj-react-chat-backend/run/media>
+        Options -Indexes
+        Order deny,allow
+        Allow from all
+    </Directory>
+
+    LogLevel warn
+
+    # PROJECT_NAME is used to seperate the log files of this application
+    ErrorLog    ${APACHE_LOG_DIR}/config_error.log
+    CustomLog   ${APACHE_LOG_DIR}/config_access.log combined
+</VirtualHost>
