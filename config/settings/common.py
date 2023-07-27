@@ -47,6 +47,11 @@ DEFAULT_APPS = [
     'django.contrib.staticfiles',
 ]
 
+CUSTOM_APPS = [
+    "apps.authentication",
+    "apps.chat"
+]
+
 # Middlewares
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -68,6 +73,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.debug',
+                "django.template.context_processors.request",
                 'django.template.context_processors.i18n',
                 'django.template.context_processors.media',
                 'django.template.context_processors.static',
@@ -112,6 +118,8 @@ MEDIA_URL = '/media/'
 
 # ##### DEBUG CONFIGURATION ###############################
 DEBUG = False
+
+AUTH_USER_MODEL = 'authentication.CustomUser'
 
 
 # finally grab the SECRET KEY
