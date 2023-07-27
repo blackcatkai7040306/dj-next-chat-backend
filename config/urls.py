@@ -12,7 +12,7 @@ from drf_yasg.views import get_schema_view
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Dj react chat API API",
+        title="Django React chat API",
         default_version="v1",
         description="An simple chat application based on Django and React",
     ),
@@ -29,4 +29,5 @@ urlpatterns = [
     ),
     path("admin/", admin.site.urls, name="admin_interface"),
     path("v1/auth/", include("apps.authentication.urls")),
+    path("v1/chat/", include("apps.chat.urls")),
 ]
