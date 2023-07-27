@@ -4,5 +4,8 @@ from .serializers import RegisterSerializer
 
 
 class RegisterView(CreateAPIView):
+    """
+    API Register new Users
+    """
     serializer_class = RegisterSerializer
     permission_classes = (AllowAny,)
