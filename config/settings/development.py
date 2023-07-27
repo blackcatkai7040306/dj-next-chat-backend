@@ -15,9 +15,9 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 # adjust the minimal login
-LOGIN_URL = "core_login"
+LOGIN_URL = "/admin"
 LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "core_login"
+LOGOUT_REDIRECT_URL = "/swagger"
 
 
 # ##### DATABASE CONFIGURATION ############################
@@ -30,4 +30,4 @@ DATABASES = {
 
 # ##### APPLICATION CONFIGURATION #########################
 
-INSTALLED_APPS = DEFAULT_APPS + CUSTOM_APPS
+INSTALLED_APPS = DEFAULT_APPS + CUSTOM_APPS + INSTALLED_APPS

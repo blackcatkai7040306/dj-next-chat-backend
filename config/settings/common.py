@@ -47,9 +47,15 @@ DEFAULT_APPS = [
     'django.contrib.staticfiles',
 ]
 
+INSTALLED_APPS = [
+    'rest_framework',
+    'rest_framework.authtoken',
+    'drf_yasg',
+]
+
 CUSTOM_APPS = [
-    "apps.authentication",
-    "apps.chat"
+    'apps.authentication',
+    'apps.chat'
 ]
 
 # Middlewares
@@ -73,7 +79,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.debug',
-                "django.template.context_processors.request",
+                'django.template.context_processors.request',
                 'django.template.context_processors.i18n',
                 'django.template.context_processors.media',
                 'django.template.context_processors.static',
@@ -134,3 +140,11 @@ except IOError:
             f.write(SECRET_KEY)
     except IOError:
         raise Exception('Could not open %s for writing!' % SECRET_FILE)
+    
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+}

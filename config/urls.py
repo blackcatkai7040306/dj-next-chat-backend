@@ -3,20 +3,30 @@
 The `urlpatterns` list routes URLs to views. 
 """
 # Django imports
-from django.urls import include, re_path
+from django.urls import include, re_path, path
 from django.contrib import admin
-from django.contrib.auth import views as auth_views
+from rest_framework import permissions
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Dj react chat API API",
+        default_version="v1",
+        description="An simple chat application based on Django and React",
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
+
 
 urlpatterns = [
-    # Examples:
-    # url(r'^blog/', include('blog.urls', namespace='blog')),
-    # provide the most basic login/logout functionality
-    re_path(
-        r"^login/$",
-        auth_views.LoginView.as_view(template_name="core/login.html"),
-        name="core_login",
+    path(
+        "swagger/",
+        schema_view.with_ui("swagger", cache_timeout=0),
+        name="schema-swagger-ui",
     ),
-    re_path(r"^logout/$", auth_views.LogoutView.as_view(), name="core_logout"),
-    # enable the admin interface
-    re_path(r"^admin/", admin.site.urls),
+    path("admin/", admin.site.urls, name="admin_interface"),
+    path("v1/auth/", include("apps.authentication.urls")),
 ]
