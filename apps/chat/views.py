@@ -1,5 +1,4 @@
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny
 from rest_framework.exceptions import ParseError
 from drf_yasg import openapi
@@ -24,12 +23,11 @@ class ChatViewSet(ModelViewSet):
             sender = int(self.request.query_params.get("sender"))
             receiver = int(self.request.query_params.get("receiver"))
         except ValueError:
-            return ParseError("Invalid query params")
-        chats = Chat.objects.filter(
-            sender=sender, receiver=receiver
-        ) | Chat.objects.filter(sender=receiver, receiver=sender)
-        chats.order_by("created_date")
-        return chats
+            raise ParseError("Invalid query params")
+        return (
+            Chat.objects.filter(sender=sender, receiver=receiver)
+            | Chat.objects.filter(sender=receiver, receiver=sender)
+        ).order_by("created_date")
 
     @swagger_auto_schema(
         manual_parameters=[
@@ -42,7 +40,7 @@ class ChatViewSet(ModelViewSet):
             openapi.Parameter(
                 "receiver",
                 openapi.IN_QUERY,
-                description="User id of receiver",
+                description="User id of Receiver",
                 type=openapi.TYPE_INTEGER,
             ),
         ]
