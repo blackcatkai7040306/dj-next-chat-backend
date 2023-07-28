@@ -14,7 +14,7 @@ schema_view = get_schema_view(
     openapi.Info(
         title="Django React chat API",
         default_version="v1",
-        description="An simple chat application based on Django and React",
+        description="An simple chat application based on Django and Next 13",
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
