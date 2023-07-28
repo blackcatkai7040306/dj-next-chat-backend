@@ -31,3 +31,5 @@ ALLOWED_HOSTS = []
 
 # how many days a password reset should work. I'd say even one day is too long
 # PASSWORD_RESET_TIMEOUT_DAYS = 1
+
+LOGGING["root"]["level"] = "INFO"

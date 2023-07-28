@@ -32,7 +32,7 @@ class ChatViewSet(ModelViewSet):
 
 class UserConversations(ListAPIView):
     """
-    Load chat list for the logged in user
+    Load list of chats for the logged in user
     """
 
     permission_classes = (IsAuthenticated,)

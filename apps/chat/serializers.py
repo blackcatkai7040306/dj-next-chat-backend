@@ -1,9 +1,11 @@
+import logging
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 from rest_framework import serializers
 from authentication.serializers import UserSerializer
 from chat.models import Chat
 
+logger = logging.getLogger(__name__)
 
 class ChatSerializer(serializers.ModelSerializer):
     """
@@ -31,7 +33,7 @@ class ChatSerializer(serializers.ModelSerializer):
             "sender_id": str(validated_data.get("sender").id),
             "sender_username": validated_data.get("sender").username,
         }
-
+        logging.debug("Message object: %s", message_obj)
         channel_layer = get_channel_layer()
         async_to_sync(channel_layer.group_send)(
             group=str(receiver.id),

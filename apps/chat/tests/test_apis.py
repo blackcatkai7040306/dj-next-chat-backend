@@ -1,5 +1,4 @@
 import json
-from django.test import TestCase, Client
 from rest_framework.test import APITestCase
 from django.urls import reverse
 from rest_framework import status
@@ -45,3 +44,22 @@ class UserChatTest(APITestCase):
             reverse("get_chat", kwargs={"userid": self.user2.pk})
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+
+class UserConversationTest(APITestCase):
+    def setUp(self) -> None:
+        self.user1 = CustomUser.objects.create_user(
+            username="test_user1", password="TestUser@123"
+        )
+        self.user2 = CustomUser.objects.create_user(
+            username="test_user2", password="TestUser@123"
+        )
+
+    def test_get_conversations(self) -> None:
+        self.client.force_authenticate(self.user1)
+        response = self.client.get(reverse("user_chat"))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_get_conversations_unauthorized(self) -> None:
+        response = self.client.get(reverse("user_chat"))
+        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
