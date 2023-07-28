@@ -2,8 +2,6 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import ParseError, APIException
-from drf_yasg import openapi
-from drf_yasg.utils import swagger_auto_schema
 from chat.models import Chat
 from chat.serializers import ChatSerializer
 
