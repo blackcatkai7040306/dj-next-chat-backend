@@ -32,6 +32,9 @@ class ChatViewSet(ModelViewSet):
         ).order_by("created_date")
 
 
+from django.db.models import F, Func, Q
+
+
 class UserConversations(ListAPIView):
     """
     Load chat list for the logged in user
@@ -42,6 +45,13 @@ class UserConversations(ListAPIView):
 
     def get_queryset(self):
         return (
-            Chat.objects.filter(sender=self.request.user)
-            | Chat.objects.filter(receiver=self.request.user)
-        ).order_by("-created_date")
+            Chat.objects.filter(
+                Q(sender=self.request.user) | Q(receiver=self.request.user)
+            ).order_by("-created_date")
+            .annotate(
+                greatest_user=Func(F("sender"), F("receiver"), function="GREATEST"),
+                least_user=Func(F("sender"), F("receiver"), function="LEAST"),
+            )
+            .order_by("greatest_user", "least_user")
+            .distinct("greatest_user", "least_user")
+        )

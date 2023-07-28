@@ -21,12 +21,25 @@ LOGOUT_REDIRECT_URL = "/swagger"
 
 
 # ##### DATABASE CONFIGURATION ############################
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": join(PROJECT_ROOT, "run", "dev.sqlite3"),
+#     }
+# }
+
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": join(PROJECT_ROOT, "run", "dev.sqlite3"),
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "chatapp",
+        "USER": "postgres",
+        "PASSWORD": "pratik",
+        "HOST": "localhost",
+        "PORT": "5432",
+        # "ATOMIC_REQUESTS": True,
     }
 }
+
 
 # ##### APPLICATION CONFIGURATION #########################
 
