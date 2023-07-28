@@ -9,7 +9,7 @@ from .common import *
 
 
 # ##### DEBUG CONFIGURATION ###############################
-DEBUG = True
+DEBUG = os.getenv("DEBUG")
 
 # allow all hosts during development
 ALLOWED_HOSTS = ["*"]
@@ -25,11 +25,11 @@ LOGOUT_REDIRECT_URL = "/swagger"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "chatapp",
-        "USER": "postgres",
-        "PASSWORD": "pratik",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "NAME": os.getenv("DATABASE_NAME"),
+        "USER": os.getenv("DATABASE_USER"),
+        "PASSWORD": os.getenv("DATABASE_PASSWORD"),
+        "HOST": os.getenv("DATABASE_HOST"),
+        "PORT": os.getenv("DATABASE_PORT"),
         # "ATOMIC_REQUESTS": True,
     }
 }

@@ -1,6 +1,11 @@
 # Python imports
 from os.path import abspath, basename, dirname, join, normpath
 import sys
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 # ##### PATH CONFIGURATION ################################
@@ -123,7 +128,8 @@ MEDIA_URL = "/media/"
 
 
 # ##### DEBUG CONFIGURATION ###############################
-DEBUG = False
+DEBUG = os.getenv("DEBUG",False)
+
 
 AUTH_USER_MODEL = "authentication.CustomUser"
 

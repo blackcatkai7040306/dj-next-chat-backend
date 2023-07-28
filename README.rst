@@ -1,54 +1,53 @@
-django-project-skeleton
-=======================
+Django Next 13 Chat Application Backend
+========================================
 
-**django-project-skeleton** is my skeleton for Django projects. It provides a
-directory structure for Django projects during development and deployment.
+**Django Next 13 Chat Application Backend** is for a sample chat application.
 
 
 Meta
 ----
 
 Author:
-    Mischback
-
-Contributors:
-    `agirardeaudale <https://github.com/agirardeuadale>`_,
-    `jmrbcu <https://github.com/jmrbcu>`_
+    pratiksinghchauhan
 
 Status:
     maintained, in development
 
 Version:
-    1.4
+    1
 
 Django Version:
-    3.0, 2.2, 2.1, 2.0, 1.11
-
+    4.0
 
 Usage
 -----
 
-To use this repository just use the ``template`` option of `django-admin
-<https://docs.djangoproject.com/en/2.2/ref/django-admin/#startproject>`_::
-
-    $ django-admin startproject --template=https://github.com/Mischback/django-project-skeleton/archive/development.zip [projectname]
-
-If you wish to automagically fill the ``apache2_vhost.sample`` the command is::
-
-    $ django-admin startproject --template=https://github.com/Mischback/django-project-skeleton/archive/development.zip --name apache2_vhost.sample [projectname]
+To utilize this repository, begin by cloning it. Then, install the necessary requirements and execute the code. Refer to the commands provided below for guidance:
 
 
-Note
-----
+    $ git clone https://github.com/pratiksinghchauhan/dj-next-chat-backend.git
+    $ pip install -r requirements/development.txt
 
-Disregard the failing build-status of commits in the branch ``development``.
-These commits are tested on Travis with all possible combinations of Django
-and Python. This is done to determine the compatibility and update the
-documentation accordingly. Failing is expected.
+    Move .env.example to .env and update the with postgres credentials. And then run the following commands
+
+    $ python manage.py migrate
+
+    Then run the server using
+    $ python manage.py runserver
+
+    To run the tests
+    $ python manage.py test
 
 
 Documentation
 -------------
 
-You can see the documentation over at **Read the Docs**: `django-project-skeleton
-<http://django-project-skeleton.readthedocs.org/en/latest/>`_
+To view the documentations head over to `localhost:8000/swagger/` or `localhost:8000/redoc/` as shown in the screenshots below
+
+.. image:: screenshots/redoc.png
+    :alt: Screenshot
+    :width: 800px
+
+.. image:: screenshots/swagger.png
+    :alt: Screenshot
+    :width: 800px
