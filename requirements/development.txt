@@ -1,6 +1,6 @@
-coverage
-tox
-flake8
+coverage==7.2.7
+tox==4.6.4
+flake8==6.0.0
 asgiref==3.7.2
 attrs==23.1.0
 autobahn==23.6.2
