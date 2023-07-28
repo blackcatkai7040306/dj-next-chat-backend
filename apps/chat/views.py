@@ -1,9 +1,11 @@
+from django.db.models import F, Func, Q
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import ParseError, APIException
 from chat.models import Chat
 from chat.serializers import ChatSerializer
+
 
 
 # Create your views here.
@@ -30,7 +32,6 @@ class ChatViewSet(ModelViewSet):
         ).order_by("created_date")
 
 
-from django.db.models import F, Func, Q
 
 
 class UserConversations(ListAPIView):

@@ -28,7 +28,7 @@ class ChatSerializer(serializers.ModelSerializer):
         receiver = validated_data.get("receiver")
         message_obj = {
             "message": validated_data.get("message"),
-            "sender_id": validated_data.get("sender").id,
+            "sender_id": str(validated_data.get("sender").id),
             "sender_username": validated_data.get("sender").username,
         }
 
