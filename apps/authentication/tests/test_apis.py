@@ -18,7 +18,7 @@ class CreateNewUserTest(TestCase):
             data=json.dumps(self.valid_payload),
             content_type="application/json",
         )
-        self.assertEqual(response.data, {"username": "test_user1"})
+        self.assertIn("token", response.data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_create_invalid_user(self) -> None:

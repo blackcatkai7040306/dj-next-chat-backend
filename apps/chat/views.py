@@ -7,10 +7,6 @@ from chat.models import Chat
 from chat.serializers import ChatSerializer
 
 
-
-# Create your views here.
-
-
 class ChatViewSet(ModelViewSet):
     """
     Perform CRUD operation on the chat model

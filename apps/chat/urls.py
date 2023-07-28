@@ -7,11 +7,11 @@ router = SimpleRouter()
 router.register(r"chat-viewset", ChatViewSet, basename="chat")
 
 urlpatterns = [
-    path("messages/", ChatViewSet.as_view({"post": "create"}), name="chat_view_set"),
+    path("messages/", ChatViewSet.as_view({"post": "create"}), name="post_chat"),
     path(
         "messages/<int:userid>",
         ChatViewSet.as_view({"get": "list"}),
-        name="chat_view_set",
+        name="get_chat",
     ),
     path("conversations/", UserConversations.as_view(), name="user_chat"),
 ]

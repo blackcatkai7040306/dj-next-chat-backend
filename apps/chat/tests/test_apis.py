@@ -26,7 +26,7 @@ class UserChatTest(APITestCase):
 
     def test_create_message(self) -> None:
         response = self.client.post(
-            reverse("chat_view_set"),
+            reverse("post_chat"),
             data=json.dumps(self.valid_payload),
             content_type="application/json",
         )
@@ -34,7 +34,7 @@ class UserChatTest(APITestCase):
 
     def test_create_invalid_message(self) -> None:
         response = self.client.post(
-            reverse("chat_view_set"),
+            reverse("post_chat"),
             data=json.dumps(self.invalid_payload),
             content_type="application/json",
         )
@@ -42,14 +42,6 @@ class UserChatTest(APITestCase):
 
     def test_get_messages(self) -> None:
         response = self.client.get(
-            reverse("chat_view_set"),
-            {"other_user": self.user2.id},
+            reverse("get_chat", kwargs={"userid": self.user2.pk})
         )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-    def test_invalid_get_messages(self) -> None:
-        response = self.client.get(
-            reverse("chat_view_set"),
-            {"other_user": "invalid_user"},
-        )
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)

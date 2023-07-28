@@ -2,19 +2,16 @@ import json
 from channels.consumer import AsyncConsumer
 
 
-
-
 class ChatConsumer(AsyncConsumer):
     def __init__(self) -> None:
         super().__init__()
-    
+
     async def websocket_connect(self, event):
         print("connected", event)
         user = self.scope["user"]
         self.userid = str(user.id)
         await self.channel_layer.group_add(self.userid, self.channel_name)
         await self.send({"type": "websocket.accept"})
-       
 
     async def websocket_receive(self, event):
         print("receive", event)
