@@ -55,7 +55,7 @@ To run the tests
 Documentation
 -------------
 
-To read the API documentation, run the project and  head over to `Swagger <localhost:8000/swagger/>`_ or `Redoc <localhost:8000/redoc/>`_ as shown in the screenshots below
+To read the API documentation, run the project and  head over to `Swagger(/swagger)` or `Redoc(/redoc)` as shown in the screenshots below
 
 
 .. image:: screenshots/redoc.png
