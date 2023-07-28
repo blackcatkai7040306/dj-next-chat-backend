@@ -21,31 +21,18 @@ class ChatViewSet(ModelViewSet):
 
     def get_queryset(self):
         try:
-            other_user = int(self.request.query_params.get("other_user"))
+            userid = int(self.kwargs.get("userid"))
         except ValueError:
             raise ParseError("Invalid query params")
         except Exception:
             raise APIException("Some error occured")
         return (
-            Chat.objects.filter(sender=self.request.user, receiver=other_user)
-            | Chat.objects.filter(sender=other_user, receiver=self.request.user)
+            Chat.objects.filter(sender=self.request.user, receiver=userid)
+            | Chat.objects.filter(sender=userid, receiver=self.request.user)
         ).order_by("created_date")
 
-    @swagger_auto_schema(
-        manual_parameters=[
-            openapi.Parameter(
-                "other_user",
-                openapi.IN_QUERY,
-                description="User id of the other user in the conversation",
-                type=openapi.TYPE_INTEGER,
-            ),
-        ]
-    )
-    def list(self, request, *args, **kwargs):
-        return super().list(request, *args, **kwargs)
 
-
-class UserChatView(ListAPIView):
+class UserConversations(ListAPIView):
     """
     Load chat list for the logged in user
     """
