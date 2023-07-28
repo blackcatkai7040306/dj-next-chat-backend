@@ -12,7 +12,7 @@ from drf_yasg.views import get_schema_view
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Django React chat API",
+        title="Django Next chat API",
         default_version="v1",
         description="An simple chat application based on Django and Next 13",
     ),
