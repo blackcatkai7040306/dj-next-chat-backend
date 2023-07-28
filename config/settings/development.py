@@ -21,12 +21,6 @@ LOGOUT_REDIRECT_URL = "/swagger"
 
 
 # ##### DATABASE CONFIGURATION ############################
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": join(PROJECT_ROOT, "run", "dev.sqlite3"),
-#     }
-# }
 
 DATABASES = {
     "default": {

@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "drf_yasg",
-    "corsheaders"
+    "corsheaders",
+    "channels",
 ]
 
 CUSTOM_APPS = ["apps.authentication", "apps.chat"]
@@ -65,7 +66,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "corsheaders.middleware.CorsMiddleware"
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 # template stuff
@@ -152,3 +153,5 @@ REST_FRAMEWORK = {
 }
 
 
+ASGI_APPLICATION = "config.routing.application" 
+CHANNEL_LAYERS = {"default": {"BACKEND": "channels.layers.InMemoryChannelLayer"}}
