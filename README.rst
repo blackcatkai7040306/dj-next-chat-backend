@@ -22,6 +22,15 @@ Django Version:
 Python Version:
     3.9.17
 
+Architecture
+-------------
+- User login triggers the frontend to download the user list and establish a WebSocket connection to the server (notifications channel).
+- Selecting another user to chat prompts the frontend to download the latest 15 exchanged messages.
+- When a user sends a message, the frontend sends a POST to the REST API, then the backend saves the message and notifies the users involved using the WebSocket connection (sends the new message).
+- Upon receiving a new message notification, the frontend notifies the user of a new message and pushes it to the right user if the user is open.
+
+
+
 Usage
 -----
 
